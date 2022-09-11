@@ -22,4 +22,13 @@ export const typeDefs = gql`
     allBooks(author: String, genre: [String!]): [Book!]!
     allAuthors: [Author!]!
   }
+
+  type Mutation {
+    addBook(
+      title: String!
+      published: Int!
+      author: String!
+      genres: [String!]!
+    ): Book
+  }
 `;

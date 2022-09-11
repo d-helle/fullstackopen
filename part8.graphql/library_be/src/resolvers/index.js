@@ -1,4 +1,5 @@
 import { books, authors } from "../data/data.js";
+import { v1 as uuid } from "uuid";
 
 export const resolvers = {
   Query: {
@@ -33,6 +34,25 @@ export const resolvers = {
         const cnt = books.filter((book) => book.author === author.name).length;
         return { ...author, bookCount: cnt };
       });
+    },
+  },
+  Mutation: {
+    addBook: (_root, args) => {
+      const { title, author, published, genres } = args;
+      const isNewBook = !books.some((book) => book.title === title);
+      const isNewAuthor = !authors.some((auth) => auth.name === author);
+
+      if (!isNewBook) return;
+
+      const newBook = { title, author, published, genres, id: uuid() };
+      books.push(newBook);
+
+      if (isNewAuthor) {
+        const newAuthor = { name: author, id: uuid() };
+        authors.push(newAuthor);
+      }
+
+      return newBook;
     },
   },
 };
