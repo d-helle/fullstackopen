@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require("apollo-server");
+import { ApolloServer, gql } from "apollo-server";
 import { typeDefs } from "./typeDefs/index.js";
 import { resolvers } from "./resolvers/index.js";
 
