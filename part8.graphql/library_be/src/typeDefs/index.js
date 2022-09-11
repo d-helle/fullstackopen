@@ -18,5 +18,6 @@ export const typeDefs = gql`
   type Query {
     bookCount: Int!
     authorCount: Int!
+    allBooks: [Book!]!
   }
 `;
