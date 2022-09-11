@@ -5,6 +5,7 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     born: Int
+		bookCount: Int
   }
 
   type Book {
@@ -19,5 +20,6 @@ export const typeDefs = gql`
     bookCount: Int!
     authorCount: Int!
     allBooks: [Book!]!
+    allAuthors: [Author!]!
   }
 `;
