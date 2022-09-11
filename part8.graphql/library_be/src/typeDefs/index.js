@@ -5,7 +5,7 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     born: Int
-		bookCount: Int
+    bookCount: Int
   }
 
   type Book {
@@ -19,7 +19,7 @@ export const typeDefs = gql`
   type Query {
     bookCount: Int!
     authorCount: Int!
-    allBooks: [Book!]!
+    allBooks(author: String): [Book!]!
     allAuthors: [Author!]!
   }
 `;
