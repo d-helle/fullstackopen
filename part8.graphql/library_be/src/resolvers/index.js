@@ -5,8 +5,25 @@ export const resolvers = {
     bookCount: () => books.length,
     authorCount: () => authors.length,
     allBooks: (_root, args) => {
+      if (args.author && args.genre && args.genre.length > 0) {
+        return books.filter((book) => {
+          const sameAuthor = book.author === args.author;
+          const sameGenre = args.genre.some((genre) =>
+            book.genres.includes(genre)
+          );
+
+          return sameAuthor && sameGenre;
+        });
+      }
+
       if (args.author) {
         return books.filter((book) => book.author === args.author);
+      }
+
+      if (args.genre && args.genre.length > 0) {
+        return books.filter((book) => {
+          return args.genre.some((genre) => book.genres.includes(genre));
+        });
       }
 
       return books;
